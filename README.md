@@ -34,25 +34,33 @@ OmniRoute Gateway (Docker)
 - **Zero local setup** — each machine just points to the endpoint
 - **Automatic failover** — Freestyle restarts VMs on crash
 
-## Documentation
-
-- [Setup Guide](docs/setup.md) — Full deployment instructions
-- [Configuration](docs/configuration.md) — Hermes, OpenCode, model selection
-- [Troubleshooting](docs/troubleshooting.md) — Common issues and fixes
-
 ## Repository Structure
 
 ```
-├── AGENTS.md              # AI agent instructions & memory protocol
-├── README.md              # This file
-├── docker-compose.yml     # OmniRoute container config
+├── AGENTS.md                  # Agent routing (thin — references only)
+├── README.md
+├── docker-compose.yml
 ├── config/
-│   └── hermes-omnirouter.example.yaml  # Config template
+│   └── hermes-omnirouter.example.yaml
 ├── scripts/
-│   ├── setup.sh           # Deploy to Freestyle VM
-│   ├── configure-local.sh # Point local clients at remote gateway
-│   └── smoke-test.sh      # Verify endpoint health
-└── docs/                  # Detailed documentation
+│   ├── setup.sh               # Deploy to Freestyle VM
+│   ├── configure-local.sh     # Point local clients at remote gateway
+│   └── smoke-test.sh          # Verify endpoint health
+└── docs/
+    ├── setup.md               # Deployment guide
+    ├── FORMATS.md             # Record templates (read when writing)
+    ├── decisions/             # Decision records
+    ├── discoveries/           # Bug/discovery records
+    ├── conventions/           # Pattern records
+    └── skills/                # Agent skills (agentskills.io format)
+        ├── freestyle-vm/
+        │   └── SKILL.md
+        ├── omniroute/
+        │   └── SKILL.md
+        ├── hermes-config/
+        │   └── SKILL.md
+        └── docker-deploy/
+            └── SKILL.md
 ```
 
 ## License
