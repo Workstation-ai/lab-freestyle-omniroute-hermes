@@ -6,6 +6,19 @@ Remote AI provider gateway on Freestyle.sh VMs for Hermes Agent and OpenCode.
 
 Docker · OmniRoute v3.8.49 · Freestyle.sh · Bash
 
+## Security Rules
+
+**Memories and records must NEVER contain:**
+
+- API keys, tokens, passwords, secrets
+- Private keys, certificates, credentials
+- VM IP addresses (use domain names)
+- `.env` contents with real values
+
+**If a value is sensitive, redact it:** `<REDACTED>` or use a placeholder like `YOUR_KEY_HERE`.
+
+Violation = immediate incident. No exceptions.
+
 ## Entry Points
 
 Every command below reads exactly what's needed — no more.
@@ -22,10 +35,12 @@ Every command below reads exactly what's needed — no more.
 
 | Skill | Trigger | Command |
 |-------|---------|---------|
-| `freestyle-vm` | VM create/manage/ssh | `cat docs/skills/freestyle-vm/SKILL.md` |
+| `vm-operations` | Generic VM concepts | `cat docs/skills/vm-operations/SKILL.md` |
+| `container-operations` | Generic container concepts | `cat docs/skills/container-operations/SKILL.md` |
+| `freestyle-vm` | Freestyle VM specifically | `cat docs/skills/freestyle-vm/SKILL.md` |
 | `omniroute` | Gateway config, routing | `cat docs/skills/omniroute/SKILL.md` |
 | `hermes-config` | Local client setup | `cat docs/skills/hermes-config/SKILL.md` |
-| `docker-deploy` | Container lifecycle | `cat docs/skills/docker-deploy/SKILL.md` |
+| `docker-deploy` | Docker on Freestyle VM | `cat docs/skills/docker-deploy/SKILL.md` |
 
 ### Records index
 
@@ -42,6 +57,17 @@ Every command below reads exactly what's needed — no more.
 | Decision | `docs/decisions/YYYY-MM-DD-<topic>.md` |
 | Discovery | `docs/discoveries/YYYY-MM-DD-<topic>.md` |
 | Convention | `docs/conventions/YYYY-MM-DD-<topic>.md` |
+
+## Skill Design
+
+Skills follow [agentskills.io](https://agentskills.io) format.
+
+**Design principles** (read `sed -n '1,40p' docs/SKILL-DESIGN.md` for full spec):
+
+- **Reusable first**: a skill solves one problem well, across contexts
+- **Scope in description**: if domain-specific, say so explicitly
+- **Inherit, don't duplicate**: specific skills extend generic ones, not copy them
+- **Minimal frontmatter**: name + description are the contract
 
 ## Commits
 

@@ -1,34 +1,38 @@
 ---
 name: docker-deploy
-description: Deploy and manage Docker containers on Freestyle VMs. Use when starting, stopping, or debugging OmniRoute containers.
+description: >
+  Docker Compose deployment on Freestyle VMs. Extends container-operations
+  with Docker-specific compose commands and OmniRoute container management.
+  Use when starting, stopping, or debugging Docker containers on the VM.
+scope: docker on freestyle
+extends: container-operations
 ---
 
 # Docker Deployment
 
-## Common Operations
+Extends [container-operations](../container-operations/SKILL.md) with Docker-specific commands.
+
+## Docker Compose on Freestyle VM
 
 ```bash
-# Start containers
+# Start OmniRoute
 freestyle vm exec <name> "cd /opt/omniroute && docker compose up -d"
 
-# Stop containers
+# Stop
 freestyle vm exec <name> "cd /opt/omniroute && docker compose down"
 
 # Restart
 freestyle vm exec <name> "cd /opt/omniroute && docker compose restart"
 
-# View logs
+# Logs
 freestyle vm exec <name> "docker logs omniroute --tail 100"
 
-# Check container status
+# Status
 freestyle vm exec <name> "docker ps"
-
-# Health check
-freestyle vm exec <name> "curl -sf http://localhost:20128/v1/models"
 ```
 
 ## Troubleshooting
 
 - Container exits immediately: check logs, usually port conflict
-- Can't connect: verify container is running with `docker ps`
+- Can't connect: verify container running with `docker ps`
 - Health check fails: wait 15s for startup, then check logs

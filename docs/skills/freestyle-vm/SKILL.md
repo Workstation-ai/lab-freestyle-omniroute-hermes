@@ -1,39 +1,32 @@
 ---
 name: freestyle-vm
-description: Create, manage, and SSH into Freestyle.sh VMs. Use when deploying services, checking VM status, or debugging VM issues.
+description: >
+  Freestyle.sh VM management. Extends vm-operations with Freestyle-specific
+  CLI commands, domain mapping, and Docker VM support. Use when deploying
+  to or managing Freestyle VMs specifically.
+scope: freestyle.sh
+extends: vm-operations
 ---
 
 # Freestyle VM Management
 
-## Prerequisites
+Extends [vm-operations](../vm-operations/SKILL.md) with Freestyle-specific commands.
 
-- Freestyle CLI installed and authenticated
-- VM naming: `omniroute-gw` (default)
-
-## Common Operations
+## Freestyle-Specific Operations
 
 ```bash
-# List VMs
-freestyle vm list
-
-# Create VM with Docker
+# Create VM with Docker support
 freestyle vm create <name> --docker
 
-# Check status
-freestyle vm status <name>
-
-# SSH into VM
-freestyle vm ssh <name>
-
-# Execute command
-freestyle vm exec <name> "<command>"
-
-# Map domain to port
+# Map domain to VM port
 freestyle vm domain map <name> <domain> <port>
+
+# Auth status
+freestyle auth status
 ```
 
 ## Troubleshooting
 
-- VM won't start: check `freestyle vm status` for error state
-- Can't SSH: verify auth with `freestyle auth status`
+- VM won't start: `freestyle vm status <name>` for error state
+- Can't SSH: `freestyle auth status` — re-authenticate if needed
 - Port conflict: `freestyle vm exec <name> "ss -tlnp | grep :<port>"`
