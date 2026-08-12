@@ -1,0 +1,19 @@
+# Hermes Agent / OpenCode — Remote OmniRoute Configuration
+#
+# Copy this to ~/.hermes/config.yaml or use scripts/configure-local.sh
+# Adjust base_url to point to your Freestyle VM.
+
+model:
+  # Use custom provider pointing at remote OmniRoute
+  provider: custom
+  base_url: http://YOUR_FREESTYLE_VM:20128/v1
+  api_key: ""  # keyless — OmniRoute default
+
+  # Model selection:
+  #   auto/best-coding — dynamic routing, best provider per request (recommended)
+  #   auto/best-chat   — same, optimized for chat
+  #   google/gemini-2.5-flash — pinned, stable, 1M context
+  default: auto/best-coding
+
+  # Uncomment for pinned models with < 128k context:
+  # context_length: 1048576
