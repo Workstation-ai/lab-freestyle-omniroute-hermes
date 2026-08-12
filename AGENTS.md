@@ -6,39 +6,42 @@ Remote AI provider gateway on Freestyle.sh VMs for Hermes Agent and OpenCode.
 
 Docker · OmniRoute v3.8.49 · Freestyle.sh · Bash
 
-## Paths
+## Entry Points
 
-| What | Where |
-|------|-------|
-| Skills | `docs/skills/<name>/SKILL.md` |
-| Decisions | `docs/decisions/YYYY-MM-DD-<topic>.md` |
-| Discoveries | `docs/discoveries/YYYY-MM-DD-<topic>.md` |
-| Conventions | `docs/conventions/YYYY-MM-DD-<topic>.md` |
-| Format reference | `docs/FORMATS.md` (read only when writing a record) |
-| Setup guide | `docs/setup.md` |
+Every command below reads exactly what's needed — no more.
 
-## Skills
+### Records (read format before writing)
 
-Skills follow [agentskills.io](https://agentskills.io) format. Each is a folder with `SKILL.md` (YAML frontmatter + markdown body).
+| What | Command |
+|------|---------|
+| Decision template | `sed -n '5,25p' docs/FORMATS.md` |
+| Discovery template | `sed -n '27,46p' docs/FORMATS.md` |
+| Convention template | `sed -n '48,61p' docs/FORMATS.md` |
 
-| Skill | Trigger |
-|-------|---------|
-| `freestyle-vm` | VM create/manage/ssh |
-| `omniroute` | Gateway config, routing |
-| `hermes-config` | Local client setup |
-| `docker-deploy` | Container lifecycle |
+### Skills (read when task matches trigger)
 
-Load a skill only when the task matches its trigger. Read `docs/skills/<name>/SKILL.md`.
+| Skill | Trigger | Command |
+|-------|---------|---------|
+| `freestyle-vm` | VM create/manage/ssh | `cat docs/skills/freestyle-vm/SKILL.md` |
+| `omniroute` | Gateway config, routing | `cat docs/skills/omniroute/SKILL.md` |
+| `hermes-config` | Local client setup | `cat docs/skills/hermes-config/SKILL.md` |
+| `docker-deploy` | Container lifecycle | `cat docs/skills/docker-deploy/SKILL.md` |
 
-## Memory Protocol
+### Records index
 
-Write a record when you make a decision, find a bug, or establish a pattern.
+| Type | Path | Listing command |
+|------|------|-----------------|
+| Decisions | `docs/decisions/` | `ls docs/decisions/` |
+| Discoveries | `docs/discoveries/` | `ls docs/discoveries/` |
+| Conventions | `docs/conventions/` | `ls docs/conventions/` |
 
-- **Decision** → `docs/decisions/` — read `docs/FORMATS.md` for the template
-- **Discovery** → `docs/discoveries/` — read `docs/FORMATS.md` for the template
-- **Convention** → `docs/conventions/` — read `docs/FORMATS.md` for the template
+### Write locations
 
-File naming: `YYYY-MM-DD-<short-topic>.md`
+| Record type | Create at |
+|-------------|-----------|
+| Decision | `docs/decisions/YYYY-MM-DD-<topic>.md` |
+| Discovery | `docs/discoveries/YYYY-MM-DD-<topic>.md` |
+| Convention | `docs/conventions/YYYY-MM-DD-<topic>.md` |
 
 ## Commits
 
